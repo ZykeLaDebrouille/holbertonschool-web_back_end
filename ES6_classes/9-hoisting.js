@@ -15,13 +15,9 @@ export class HolbertonClass {
 
   // Méthode toString pour HolbertonClass
   toString() {
-    return `${this._year} - ${this._location}`;
+    return this._year.toString();
   }
 }
-
-// Instances de HolbertonClass
-const class2019 = new HolbertonClass(2019, 'San Francisco');
-const class2020 = new HolbertonClass(2020, 'San Francisco');
 
 // Définition de la classe StudentHolberton
 export class StudentHolberton {
@@ -45,9 +41,13 @@ export class StudentHolberton {
 
   // Méthode toString pour StudentHolberton
   toString() {
-    return this.fullStudentDescription;
+    return this.fullName;
   }
 }
+
+// Instances de HolbertonClass
+const class2019 = new HolbertonClass(2019, 'San Francisco');
+const class2020 = new HolbertonClass(2020, 'San Francisco');
 
 // Création des instances de StudentHolberton
 const student1 = new StudentHolberton('Guillaume', 'Salva', class2020);
@@ -57,4 +57,4 @@ const student4 = new StudentHolberton('Donald', 'Bush', class2019);
 const student5 = new StudentHolberton('Jason', 'Sandler', class2019);
 
 // Liste des étudiants exportée
-export const listOfStudents = [student1, student2, student3, student4, student5];
+export default [student1, student2, student3, student4, student5];
