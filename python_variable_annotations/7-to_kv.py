@@ -2,7 +2,7 @@
 """A module for creating a tuple from a string and a squared number."""
 
 
-from typing import List, Union
+from typing import Tuple, Union
 
 def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
     """
