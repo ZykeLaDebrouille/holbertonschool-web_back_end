@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""A module for calculating the lengths of sequences in an iterable."""
+
 
 from typing import Iterable, Sequence, List, Tuple
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""A module for summing a list of floats."""
+
 
 from typing import List
 

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""A module for creating a multiplier function."""
+
 
 from typing import Callable
 

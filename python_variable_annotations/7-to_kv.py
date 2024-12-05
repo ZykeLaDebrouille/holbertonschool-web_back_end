@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""A module for creating a tuple from a string and a squared number."""
+
 
 from typing import List, Union
 
