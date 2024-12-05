@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
-""" async routine called wait_n that takes in 2 int arguments"""
+"""Execute multiple coroutines concurrently and return their results in ascending order."""
 
 import asyncio
 from typing import List
-wait_n = __import__('1-concurrent_coroutines').wait_n
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
 async def wait_n(n: int, max_delay: int) -> List[float]:
-    """ spawns wait_random n times with max_delay and return
-        the list of all the delays"""
-    tasks = [asyncio.create_task(wait_n(max_delay)) for _ in range(n)]
+    """Spawns wait_random n times with the specified max_delay and returns a sorted list of delays.
+
+    Args:
+        n (int): Number of coroutines to spawn.
+        max_delay (int): Maximum delay for each coroutine.
+
+    Returns:
+        List[float]: List of delays in ascending order.
+    """
+    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
     delays = []
 
-    # Insert the results into the sorted delays list
+    # Collect the completed tasks in the order they finish
     for completed_task in asyncio.as_completed(tasks):
         delay = await completed_task
-        # Insert the delay into the sorted delays list
-        for index, current_delay in enumerate(delays):
-            if delay < current_delay:
-                delays.insert(index, delay)
-                break
-        else:
-            delays.append(delay)
+        delays.append(delay)
 
     return delays
