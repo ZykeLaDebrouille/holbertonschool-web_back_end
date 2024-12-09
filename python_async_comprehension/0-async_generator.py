@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 import asyncio
 from random import uniform
 
