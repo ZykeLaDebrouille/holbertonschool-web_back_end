@@ -26,12 +26,15 @@ Bienvenue dans le projet **Python Async Comprehension** ! 🚀 Ici, nous exploro
 
 ### Style et bonnes pratiques
 
-- Respecter la norme **Pycodestyle** (version 2.5.x).
-- Documentation obligatoire pour :
-  - Les modules.
-  - Les fonctions/coroutines.
-- Les **type annotations** sont obligatoires pour toutes les fonctions et coroutines.
-- Tous les fichiers doivent se terminer par une nouvelle ligne.
+1. **Shebang** : Présent dans chaque fichier.
+2. **Documentation** :
+   - Les modules, fonctions et coroutines ont une documentation explicite.
+3. **Type annotations** :
+   - Ajout des types pour les retours (ex. : `AsyncGenerator[float, None]`, `List[float]`).
+4. **Style Pycodestyle** :
+   - Respecté avec des lignes de moins de 79 caractères.
+
+---
 
 ---
 
