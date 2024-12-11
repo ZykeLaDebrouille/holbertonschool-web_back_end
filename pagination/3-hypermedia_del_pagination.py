@@ -6,6 +6,7 @@ Deletion-resilient hypermedia pagination
 import csv
 from typing import List, Dict, Any
 
+
 class Server:
     """Server class to paginate a database of popular baby names."""
     DATA_FILE = "Popular_Baby_Names.csv"
@@ -43,7 +44,7 @@ class Server:
         Returns:
             Dict[str, Any]: Metadata about the current page and dataset state.
         """
- # Vérifier que l'index demandé est valide (entre 0 et la taille du dataset indexé)
+        # Vérifier que l'index demandé est valide (entre 0 et la taille du dataset indexé)
         assert index is not None and 0 <= index < len(self.indexed_dataset()), \
             "Index out of range."
 
@@ -69,4 +70,3 @@ class Server:
             "page_size": len(data),  # Nombre d'éléments dans la page
             "next_index": next_index  # Index pour la page suivante (None si fin du dataset)
         }
-    
