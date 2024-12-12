@@ -1,5 +1,3 @@
----
-
 # **Projet : Pagination avec Python**
 
 ## **Description**
