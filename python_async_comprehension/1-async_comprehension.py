@@ -4,7 +4,6 @@ Module 1-async_comprehension
 Ce module contient une coroutine qui collecte 10 nombres aléatoires
 générés par async_generator et retourne une liste de ces nombres.
 """
-
 from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
