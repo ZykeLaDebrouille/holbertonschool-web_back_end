@@ -1,4 +1,3 @@
-```markdown
 # NodeJS Basics 🚀
 
 Bienvenue dans le projet **NodeJS Basics** ! Ce projet est une introduction pratique à Node.js, où tu vas explorer les bases de l'exécution de JavaScript côté serveur, la manipulation de fichiers, et la création de serveurs HTTP simples. Prépare-toi à plonger dans l'univers de Node.js avec un peu de fun et beaucoup d'apprentissage !
@@ -6,6 +5,7 @@ Bienvenue dans le projet **NodeJS Basics** ! Ce projet est une introduction prat
 ## Objectifs d'apprentissage 🎯
 
 À la fin de ce projet, tu seras capable de :
+
 - Exécuter du JavaScript avec Node.js 🖥️
 - Utiliser des modules Node.js 📦
 - Lire des fichiers de manière synchrone et asynchrone 📄
@@ -23,10 +23,13 @@ Bienvenue dans le projet **NodeJS Basics** ! Ce projet est une introduction prat
 ## Installation 🛠️
 
 1. Clone le dépôt :
+
    ```bash
    git clone https://github.com/zykeladebrouille/holbertonschool-web_back_end.git
    ```
+
 2. Installe les dépendances :
+
    ```bash
    npm install
    ```
@@ -45,14 +48,19 @@ Bienvenue dans le projet **NodeJS Basics** ! Ce projet est une introduction prat
 ## Comment exécuter les scripts 🏃‍♂️
 
 - Pour exécuter un script :
+
   ```bash
   node <nom_du_fichier>.js
   ```
+
 - Pour lancer les tests :
+
   ```bash
   npm run test
   ```
+
 - Pour vérifier le linting :
+
   ```bash
   npm run full-test
   ```
@@ -60,6 +68,7 @@ Bienvenue dans le projet **NodeJS Basics** ! Ce projet est une introduction prat
 ## Exemples de sortie 🖨️
 
 ### 2-read_file.js
+
 ```bash
 Number of students: 10
 Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
@@ -67,6 +76,7 @@ Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
 ```
 
 ### 4-http.js
+
 ```bash
 $ curl localhost:1245
 Hello Holberton School!
@@ -86,4 +96,3 @@ Ce projet a été réalisé avec ❤️ par [Zyke](https://github.com/Zykeladebr
 ---
 
 **Bon courage et amuse-toi bien en explorant Node.js !** 🎉
-```
