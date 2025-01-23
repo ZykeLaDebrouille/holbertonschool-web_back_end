@@ -2,7 +2,6 @@ const express = require('express');
 const fs = require('fs');
 
 const app = express();
-const port = 1245;
 
 function countStudents(path) {
   return new Promise((resolve, reject) => {
@@ -56,6 +55,6 @@ app.get('/home', async (req, res) => {
   res.send("Bah mon gars tu t'es perdu ou quoi ? Ici c'est chez moi !\n");
 });
 
-app.listen(port);
+app.listen(1245);
 
 module.exports = app;
