@@ -1,33 +1,25 @@
-import express from 'express';
-import { promises as fs } from 'fs';
-
-// Create an Express application
+const express = require('express');
+const fs = require('fs').promises;
 const app = express();
+const port = 1245;
 
-/**
- * Reads a CSV file asynchronously and returns an object of student arrays grouped by field.
- * @param {string} path - The path to the CSV file.
- * @returns {Promise} - A promise that resolves with an object of student arrays grouped by field, or rejects with an error.
- */
-const readDatabase = async (path) => {
+// Function to count students and group them by field (program)
+const countStudents = async (path) => {
   try {
     const data = await fs.readFile(path, 'utf8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const students = lines.slice(1); // Ignore the first line (header)
 
-    if (lines.length <= 1) {
+    if (students.length === 0) {
       throw new Error('Cannot load the database');
     }
 
-    const [header, ...students] = lines;
     const fields = {};
-
     students.forEach((student) => {
       const [firstname, , , field] = student.split(',');
-
       if (!fields[field]) {
         fields[field] = [];
       }
-
       fields[field].push(firstname);
     });
 
@@ -37,36 +29,35 @@ const readDatabase = async (path) => {
   }
 };
 
-// Route for the homepage
+// Route for the root path
 app.get('/', (req, res) => {
-  res.status(200).send('Hello Holberton School!');
+  res.type('text/plain');
+  res.send('Hello Holberton School!');
 });
 
-// Route to get all students
+// Route for the /students path
 app.get('/students', async (req, res) => {
+  const databaseFile = process.argv[2]; // Database file passed as argument
+
+  if (!databaseFile) {
+    return res.status(400).send('Database file is required');
+  }
+
   try {
-    const database = process.argv[2]; // Get the database file path from command-line arguments
-    if (!database) {
-      throw new Error('Cannot load the database');
-    }
-
-    const studentsByField = await readDatabase(database);
-
-    let responseText = 'This is the list of our students\n';
-    for (const [field, students] of Object.entries(studentsByField)) {
-      responseText += `Number of students in ${field}: ${students.length}. List: ${students.join(', ')}\n`;
-    }
-
-    res.status(200).send(responseText.trim()); // Remove the last newline
+    const fields = await countStudents(databaseFile);
+    const totalStudents = Object.values(fields).flat().length; // Flatten the array and count
+    res.type('text/plain');
+    res.send(`This is the list of our students\nNumber of students: ${totalStudents}\n` +
+      Object.entries(fields).map(([field, names]) => 
+        `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`).join('\n'));
   } catch (error) {
-    res.status(500).send('Cannot load the database');
+    res.status(500).send('Error reading the database');
   }
 });
 
-// Start the server on port 1245
-app.listen(1245, () => {
-  console.log('Server is running on port 1245');
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
-// Export the app for testing
-export default app;
+module.exports = app;
