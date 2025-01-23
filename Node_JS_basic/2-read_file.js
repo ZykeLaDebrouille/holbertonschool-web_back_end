@@ -11,7 +11,7 @@ function countStudents(path) {
         }
 
         // handle the data
-        const lines = data.trim().split('\n').filter(line => line);  // remove empty lines
+        const lines = data.split('\n').filter(line => line);  // remove empty lines
         const students = {};
         let NUMBER_OF_STUDENTS = 0;
 
