@@ -1,41 +1,39 @@
 const express = require('express');
-const fs = require('fs');
-
+const fs = require('fs').promises;
 const app = express();
 
-function countStudents(path) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(path, 'utf8', (error, data) => {
-      if (error) {
-        reject(new Error('Cannot load the database'));
-        return;
+const countStudents = async (path) => {
+  try {
+    const data = await fs.readFile(path, 'utf8');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const students = lines.slice(1); // Ignore la première ligne (en-tête)
+
+    if (students.length === 0) {
+      throw new Error('Cannot load the database');
+    }
+
+    const fields = {};
+    students.forEach((student) => {
+      const [firstname, , , field] = student.split(',');
+      if (!fields[field]) {
+        fields[field] = [];
       }
-
-      let output = '';
-      const lines = data.trim().split('\n').filter((line) => line);
-      const students = {};
-      let numberOfStudents = 0;
-
-      for (let i = 1; i < lines.length; i++) {
-        const [firstname, lastname, age, field] = lines[i].split(',');
-        if (field) {
-          if (!students[field]) {
-            students[field] = [];
-          }
-          students[field].push(firstname);
-          numberOfStudents++;
-        }
-      }
-
-      output += `Number of students: ${numberOfStudents}\n`;
-      for (const field in students) {
-        output += `Number of students in ${field}: ${students[field].length}. List: ${students[field].join(', ')}\n`;
-      }
-
-      resolve(output);
+      fields[field].push(firstname);
     });
-  });
-}
+
+    console.log(`Number of students: ${students.length}`);
+    for (const [field, names] of Object.entries(fields)) {
+      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
+    }
+
+    return Promise.resolve();
+  } catch (error) {
+    return Promise.reject(new Error('Cannot load the database'));
+  }
+};
+
+module.exports = countStudents;
+
 
 app.get('/', (req, res) => {
   res.send('Hello Holberton School!');
